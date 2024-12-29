@@ -286,36 +286,40 @@
   <footer style="color: rgb(136, 136, 136); text-align: center; margin-top: 40px; font-size: 12px;">
     <p style="color: rgb(136, 136, 136);">Updated regularly by MIKETIIN | Feedback? Join my <a href="https://discord.gg/tfbrBbYsMP" target="_blank" style="color: rgb(136, 136, 136); text-decoration: underline;">Discord Server</a></p>
   </footer>
-  <script>
-    // Dark Mode Toggler Script
-    const themeToggler = document.getElementById('theme-toggler');
-    const body = document.body;
-
-    themeToggler.addEventListener('click', () => {
-        // Toggle the 'light-mode' class on the body
-        body.classList.toggle('light-mode');
-
-        // Change the icon based on the mode
-        if (body.classList.contains('light-mode')) {
-            themeToggler.textContent = '🌙'; // Moon icon for light mode
-        } else {
-            themeToggler.textContent = '🌞'; // Sun icon for dark mode
-        }
-    });
-</script>
 <script>
-    window.onload = function() {
-      // Retrieve saved state if available
-      const savedState = localStorage.getItem('pageState');
-      if (savedState) {
-        document.getElementById('content').innerText = savedState;
-      }
+  // Dark Mode Toggler Script
+  const themeToggler = document.getElementById('theme-toggler');
+  const body = document.body;
 
-      // Save the content every time the user changes it
-      document.getElementById('content').addEventListener('input', function() {
-        localStorage.setItem('pageState', document.getElementById('content').innerText);
-      });
-    };
+  // Function to apply dark mode or light mode based on localStorage
+  function applySavedTheme() {
+    const savedTheme = localStorage.getItem('theme'); // Get saved theme from localStorage
+    if (savedTheme === 'dark') {
+      body.classList.remove('light-mode');
+      themeToggler.textContent = '🌞'; // Sun icon for dark mode
+    } else {
+      body.classList.add('light-mode');
+      themeToggler.textContent = '🌙'; // Moon icon for light mode
+    }
+  }
+
+  // Apply saved theme when the page loads
+  applySavedTheme();
+
+  // Toggle theme and save the preference in localStorage
+  themeToggler.addEventListener('click', () => {
+    // Toggle the 'light-mode' class on the body
+    body.classList.toggle('light-mode');
+
+    // Change the icon based on the mode
+    if (body.classList.contains('light-mode')) {
+      themeToggler.textContent = '🌙'; // Moon icon for light mode
+      localStorage.setItem('theme', 'light'); // Save light mode to localStorage
+    } else {
+      themeToggler.textContent = '🌞'; // Sun icon for dark mode
+      localStorage.setItem('theme', 'dark'); // Save dark mode to localStorage
+    }
+  });
 </script>
 </body>
 </html>
