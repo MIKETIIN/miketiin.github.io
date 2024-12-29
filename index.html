@@ -301,19 +301,7 @@
         } else {
             themeToggler.textContent = '🌞'; // Sun icon for dark mode
         }
-
-    window.onload = function() {
-        // Retrieve saved state if available
-        const savedState = localStorage.getItem('pageState');
-        if (savedState) {
-          document.getElementById('content').innerText = savedState;
-        }
-
-        // Save the content every time the user changes it
-        document.getElementById('content').addEventListener('input', function() {
-          localStorage.setItem('pageState', document.getElementById('content').innerText);
-        });
-      };
+    });
 </script>
 </body>
 </html>
